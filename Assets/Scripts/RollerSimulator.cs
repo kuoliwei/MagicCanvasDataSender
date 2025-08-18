@@ -22,46 +22,50 @@ public class RollerSimulator : MonoBehaviour
 
     void Update()
     {
-        // 若 Inspector 動態修改 sendRate，更新 interval
-        sendInterval = 1f / Mathf.Max(1, sendRatePerSecond);
+        //// 若 Inspector 動態修改 sendRate，更新 interval
+        //sendInterval = 1f / Mathf.Max(1, sendRatePerSecond);
 
-        if (Input.GetMouseButton(0)) // 按住左鍵
+        //if (Input.GetMouseButton(0)) // 按住左鍵
+        //{
+        //    //sendTimer += Time.deltaTime;
+        //    //while (sendTimer >= sendInterval)
+        //    //{
+        //    //    sendTimer -= sendInterval;
+
+        //    //    Vector2 screenPos = Input.mousePosition;
+
+        //    //    float x = Mathf.Clamp01(screenPos.x / Screen.width);
+        //    //    float y = 1f - Mathf.Clamp01(screenPos.y / Screen.height); // 翻轉 Y 軸
+
+        //    //    manager.BroadcastTestMessage(x, y);
+        //    //    messagesSentThisSecond++;
+        //    //}
+
+        //    Vector2 screenPos = Input.mousePosition;
+
+        //    float x = Mathf.Clamp01(screenPos.x / Screen.width);
+        //    float y = 1f - Mathf.Clamp01(screenPos.y / Screen.height); // 翻轉 Y 軸
+
+        //    manager.BroadcastTestMessage(x, y);
+        //    messagesSentThisSecond++;
+
+        //}
+        //else
+        //{
+        //    sendTimer = 0f; // 放開滑鼠就歸零
+        //}
+
+        //// 每秒輸出一次傳送筆數
+        //secondTimer += Time.deltaTime;
+        //if (secondTimer >= 1f)
+        //{
+        //    Debug.Log($"[Server] 每秒送出筆數：{messagesSentThisSecond}");
+        //    messagesSentThisSecond = 0;
+        //    secondTimer = 0f;
+        //}
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            //sendTimer += Time.deltaTime;
-            //while (sendTimer >= sendInterval)
-            //{
-            //    sendTimer -= sendInterval;
-
-            //    Vector2 screenPos = Input.mousePosition;
-
-            //    float x = Mathf.Clamp01(screenPos.x / Screen.width);
-            //    float y = 1f - Mathf.Clamp01(screenPos.y / Screen.height); // 翻轉 Y 軸
-
-            //    manager.BroadcastTestMessage(x, y);
-            //    messagesSentThisSecond++;
-            //}
-
-            Vector2 screenPos = Input.mousePosition;
-
-            float x = Mathf.Clamp01(screenPos.x / Screen.width);
-            float y = 1f - Mathf.Clamp01(screenPos.y / Screen.height); // 翻轉 Y 軸
-
-            manager.BroadcastTestMessage(x, y);
-            messagesSentThisSecond++;
-
-        }
-        else
-        {
-            sendTimer = 0f; // 放開滑鼠就歸零
-        }
-
-        // 每秒輸出一次傳送筆數
-        secondTimer += Time.deltaTime;
-        if (secondTimer >= 1f)
-        {
-            Debug.Log($"[Server] 每秒送出筆數：{messagesSentThisSecond}");
-            messagesSentThisSecond = 0;
-            secondTimer = 0f;
+            manager.SendPoseOnce();
         }
     }
 }
