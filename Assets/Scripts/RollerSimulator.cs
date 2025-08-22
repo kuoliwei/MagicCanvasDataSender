@@ -25,7 +25,7 @@ public class RollerSimulator : MonoBehaviour
         //// 若 Inspector 動態修改 sendRate，更新 interval
         //sendInterval = 1f / Mathf.Max(1, sendRatePerSecond);
 
-        //if (Input.GetMouseButton(0)) // 按住左鍵
+        //if (Input.GetMouseButton(0)) // 按住左鍵 送uv座標
         //{
         //    //sendTimer += Time.deltaTime;
         //    //while (sendTimer >= sendInterval)
@@ -63,7 +63,7 @@ public class RollerSimulator : MonoBehaviour
         //    messagesSentThisSecond = 0;
         //    secondTimer = 0f;
         //}
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P)) // 送姿態資料
         {
             manager.SendPoseOnce();
         }
